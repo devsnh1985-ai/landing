@@ -123,7 +123,7 @@
         }
 
         .btn-cta-sm {
-            background: #F97316;
+            background: #ffc107;
             color: #fff;
             border: none;
             padding: 8px 16px;
@@ -252,19 +252,29 @@
             position: relative;
             overflow: hidden
         }
+		
+.hero-video {
+    position: absolute;
+    inset: -10px; /* запас за края */
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    object-fit: cover;
+    z-index: 0;
+}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&h=800&fit=crop') center/cover no-repeat;
-            opacity: .15;
-            pointer-events: none
-        }
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0F1D45 0%, #1E3A8A 50%, #1E40AF 100%);
+	opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
 
         .hero-inner {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             display: flex;
             flex-direction: column;
             gap: 32px;
@@ -299,7 +309,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #F97316;
+            background: #ffc107;
             color: #fff;
             padding: 10px 16px;
             border-radius: 6px;
@@ -320,7 +330,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background: #F97316;
+            background: #ffc107;
             color: #fff;
             border: none;
             padding: 14px 28px;
@@ -756,7 +766,7 @@
         }
 
         .tier-card--featured {
-            border-color: #F97316;
+            border-color: #ffc107;
             box-shadow: 0 8px 32px rgba(249, 115, 22, .12);
             transform: scale(1);
             z-index: 1
@@ -780,7 +790,7 @@
 
         .tier-badge--std {
             background: #FFF7ED;
-            color: #F97316
+            color: #ffc107
         }
 
         .tier-badge--premium {
@@ -793,7 +803,7 @@
             position: absolute;
             top: 16px;
             right: 16px;
-            background: #F97316;
+            background: #ffc107;
             color: #fff;
             padding: 4px 10px;
             border-radius: 20px;
@@ -880,7 +890,7 @@
 
         .tier-model-price {
             font-size: 12px;
-            color: #F97316;
+            color: #ffc107;
             font-weight: 700
         }
 
@@ -908,8 +918,8 @@
         }
 
         .btn-tier--filled {
-            background: #F97316;
-            border: 1.5px solid #F97316;
+            background: #ffc107;
+            border: 1.5px solid #ffc107;
             color: #fff
         }
 
@@ -1039,7 +1049,7 @@
         }
 
         .geo-legend-dot--own {
-            background: #F97316;
+            background: #ffc107;
             box-shadow: 0 0 6px rgba(249, 115, 22, .7)
         }
 
@@ -1092,7 +1102,7 @@
         .geo-counter-num {
             font-size: 26px;
             font-weight: 700;
-            color: #F97316;
+            color: #ffc107;
             line-height: 1.2
         }
 
@@ -1526,7 +1536,7 @@
         }
 
         .review-stars {
-            color: #F97316;
+            color: #ffc107;
             margin-bottom: 10px;
             font-size: 14px;
             letter-spacing: 2px
@@ -1566,7 +1576,7 @@
         }
 
         .yandex-widget:hover {
-            border-color: #F97316
+            border-color: #ffc107
         }
 
         .yandex-rating {
@@ -1576,7 +1586,7 @@
         }
 
         .yandex-stars {
-            color: #F97316
+            color: #ffc107
         }
 
         .yandex-label {
@@ -1636,7 +1646,7 @@
         .cta-seo-text h4 {
             font-size: 16px;
             font-weight: 600;
-            color: #F97316;
+            color: #ffc107;
             margin-bottom: 12px
         }
 
@@ -1900,11 +1910,11 @@
         .footer-rating-num {
             font-size: 28px;
             font-weight: 700;
-            color: #F97316
+            color: #ffc107
         }
 
         .footer-rating-stars {
-            color: #F97316;
+            color: #ffc107;
             font-size: 16px;
             margin: 4px 0
         }
@@ -2007,7 +2017,7 @@
         }
 
         .sb-callback {
-            background: #F97316
+            background: #ffc107
         }
 
         @media(min-width:1024px) {
@@ -2029,7 +2039,7 @@
         .mobile-cta button {
             width: 100%;
             padding: 14px;
-            background: #F97316;
+            background: #ffc107;
             color: #fff;
             border: none;
             font-size: 15px;
@@ -2394,7 +2404,7 @@
         }
 
         .gallery-thumb.active {
-            border-color: #F97316
+            border-color: #ffc107
         }
 
         .gallery-thumb img {
@@ -2567,3 +2577,29 @@
             text-align: center;
             margin-top: 2px
         }
+		
+.logo-container {
+    display: flex;
+    flex-direction: column; /* Выстраивает логотип и подпись друг под другом */
+    align-items: flex-start; /* Выравнивание по левому краю */
+    max-width: 245px; /* Немного увеличим ширину, чтобы тексту было просторнее */
+    user-select: none;
+}
+
+.logo-img {
+    width: auto;
+    max-width: 120px; /* Ограничиваем размер самой картинки */
+    height: auto;
+    display: block;
+    margin-bottom: 4px; /* Отступ между картинкой и текстом подписи */
+	
+}
+
+	@media (max-width: 768px) {
+    .logo-container {
+        max-width: 245px;
+    }
+    .logo-img {
+        max-width: 120px;
+    }
+}
