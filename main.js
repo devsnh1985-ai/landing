@@ -1,3 +1,29 @@
+function showCert(src, title) {
+    var modal = document.getElementById('certModal');
+    var img = document.getElementById('certModalImg');
+    var titleEl = document.getElementById('certModalTitle');
+    
+    if (!modal || !img || !titleEl) {
+        console.error('Cert modal elements not found');
+        return;
+    }
+    
+    img.src = src;
+    img.alt = title;
+    titleEl.textContent = title;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideCert(event) {
+    if (event && !event.target.closest('.cert-modal-close') && event.target !== event.currentTarget) return;
+    
+    var modal = document.getElementById('certModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
 // Initialize Lucide icons
         lucide.createIcons();
 
@@ -50,24 +76,24 @@
         window.addEventListener('resize', updateHeaderLayout);
 
         // ===== FAQ ACCORDION =====
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const item = btn.parentElement;
-                const wasOpen = item.classList.contains('open');
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
 
-                // Close all
-                document.querySelectorAll('.faq-item').forEach(function(i) {
-                    i.classList.remove('open');
-                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-                });
-
-                // Open clicked if it was closed
-                if (!wasOpen) {
-                    item.classList.add('open');
-                    btn.setAttribute('aria-expanded', 'true');
-                }
-            });
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(function(i) {
+            i.classList.remove('open');
+            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         });
+
+        // Open clicked if it was closed
+        if (!wasOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+});
 
         // ===== SCROLL TO FORM WITH SEGMENT PRESELECT =====
         function scrollToForm(segment) {
@@ -99,20 +125,7 @@
             }, 600);
         }
 
-        // ===== CERT LIGHTBOX =====
-        function openCertLightbox(name) {
-            document.getElementById('certLightboxTitle').textContent = name;
-            document.getElementById('certLightbox').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            lucide.createIcons();
-        }
-
-        function closeCertLightbox(e) {
-            if (e && e.target !== e.currentTarget) return;
-            document.getElementById('certLightbox').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
+        
         // ===== CALLBACK MODAL =====
         function openCallbackModal(e) {
             if (e) e.preventDefault();
@@ -302,37 +315,42 @@
 
         // ===== PRODUCTION GALLERY =====
         var galleryImages = [{
-                src: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=800&fit=crop',
-                alt: 'Производственный цех'
+                src: '/a1-opt/content/photo/photo-1.jpg',
+                alt: 'Фабрика'
             },
             {
-                src: 'https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=1200&h=800&fit=crop',
-                alt: 'Сырьё и материалы'
+                src: '/a1-opt/content/photo/photo-2.jpg',
+                alt: 'Производство'
             },
             {
-                src: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&h=800&fit=crop',
-                alt: 'Контроль качества'
+                src: '/a1-opt/content/photo/photo-3.jpg',
+                alt: 'Материал'
             },
             {
-                src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=800&fit=crop',
-                alt: 'Отгрузка продукции'
+                src: '/a1-opt/content/photo/photo-4.jpg',
+                alt: 'Производство'
             },
             {
-                src: 'https://images.unsplash.com/photo-1565814636199-ae8133055c1c?w=1200&h=800&fit=crop',
-                alt: 'Сборочная линия'
+                src: '/a1-opt/content/photo/photo-5.jpg',
+                alt: 'Магазин'
             },
             {
-                src: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=1200&h=800&fit=crop',
-                alt: 'Склад готовой продукции'
+                src: '/a1-opt/content/photo/photo-6.jpg',
+                alt: 'Производство'
             },
             {
-                src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop',
-                alt: 'Упаковка матрасов'
+                src: '/a1-opt/content/photo/photo-7.jpg',
+                alt: 'Магазин'
             },
             {
-                src: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&h=800&fit=crop',
-                alt: 'Готовая продукция'
+                src: '/a1-opt/content/photo/photo-8.jpg',
+                alt: 'Производство'
+            },
+            {
+                src: '/a1-opt/content/photo/photo-9.jpg',
+                alt: 'Фабрика'
             }
+			
         ];
         var galleryIndex = 0;
 
@@ -510,6 +528,38 @@
                     setTimeout(initYaMap._try, 500);
                 }
             };
+			
+			// ===== СЕРТИФИКАТЫ — ПРОСМОТР =====
+function showCert(src, title) {
+    const modal = document.getElementById('certModal');
+    const img = document.getElementById('certModalImg');
+    const titleEl = document.getElementById('certModalTitle');
+    
+    img.src = src;
+    img.alt = title;
+    titleEl.textContent = title;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideCert(event) {
+    if (event && !event.target.closest('.cert-modal-close') && event.target !== event.currentTarget) return;
+    
+    const modal = document.getElementById('certModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Закрытие по Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const certModal = document.getElementById('certModal');
+        if (certModal && certModal.classList.contains('active')) {
+            hideCert();
+        }
+        // ... остальные закрытия ...
+    }
+});
 
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', initYaMap._try);
@@ -517,3 +567,135 @@
                 initYaMap._try();
             }
         })();
+		
+
+
+// Открыть Яндекс.Карты во всплывающем окне браузера
+function openYandexPopup(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  
+  const width = 1000;
+  const height = 700;
+  const left = (screen.width - width) / 2;
+  const top = (screen.height - height) / 2;
+  
+  window.open(
+    'https://reviews.yandex.ru/shop/matrasi-lazio.ru',
+    'YandexReviews',
+    `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=yes`
+  );
+}
+
+// Открыть изображение письма
+function openImagePopup(imageUrl) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  
+  modal.style.display = 'flex';
+  modalImg.src = imageUrl;
+  document.body.style.overflow = 'hidden';
+}
+
+// Закрыть модальное окно с изображением
+function closeImagePopup() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Закрытие по Escape
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeImagePopup();
+  }
+});
+
+// ========== КАРУСЕЛЬ ==========
+(function() {
+  if (window.innerWidth > 680) return;
+
+  const track = document.getElementById('rvTrack');
+  const prevBtn = document.getElementById('rvPrev');
+  const nextBtn = document.getElementById('rvNext');
+  const dotsContainer = document.getElementById('rvDots');
+  
+  if (!track) return;
+  
+  const cards = Array.from(track.children);
+  let currentIndex = 0;
+  
+  // Создание точек
+  cards.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'rv-dot';
+    dot.setAttribute('aria-label', `Слайд ${index + 1}`);
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+  
+  const dots = dotsContainer.querySelectorAll('.rv-dot');
+  
+  // Переход к слайду
+  function goToSlide(index) {
+    currentIndex = index;
+    const offset = -index * 100;
+    track.style.transform = `translateX(${offset}%)`;
+    
+    // Обновление точек
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+    
+    // Обновление кнопок
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === cards.length - 1;
+  }
+  
+  // Кнопки навигации
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) goToSlide(currentIndex - 1);
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < cards.length - 1) goToSlide(currentIndex + 1);
+  });
+  
+  // Свайп на touch-устройствах
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+  
+  function handleSwipe() {
+    const diff = touchStartX - touchEndX;
+    const threshold = 50;
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0 && currentIndex < cards.length - 1) {
+        // Свайп влево - следующий
+        goToSlide(currentIndex + 1);
+      } else if (diff < 0 && currentIndex > 0) {
+        // Свайп вправо - предыдущий
+        goToSlide(currentIndex - 1);
+      }
+    }
+  }
+  
+  // Пересчёт при повороте экрана
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 680) {
+      track.style.transform = '';
+    } else {
+      goToSlide(currentIndex);
+    }
+  });
+})();
